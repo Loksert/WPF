@@ -5,10 +5,11 @@ using System.Text;
 using System.Timers;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace ToDoApp.NewFolder
 {
-    public class TodoModel
+    public class TodoModel : INotifyPropertyChanged
     {
         public System.DateTime CreationDate { get; set; } = DateTime.Now;
 
@@ -18,7 +19,12 @@ namespace ToDoApp.NewFolder
         {
             set
             {
+                if (_Done == value)
+                {
+                    return;
+                }
                 _Done = value;
+                OnPropertyChanged("IsDone");
             }
             get
             {
@@ -27,17 +33,29 @@ namespace ToDoApp.NewFolder
         }
 
 
-        private string _myBusines;
+        private string Text;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string str=" ")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(str));
+        }
 
         public string myBusines
         {
             set
             {
-                _myBusines = value;
+                if (Text == value)
+                {
+                    return;
+                }
+                Text = value;
+                OnPropertyChanged("Text Changed");
             }
             get
             {
-                return _myBusines;
+                return Text;
             }
         }
 

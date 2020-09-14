@@ -6,13 +6,15 @@
         xmlns:local="clr-namespace:ToDoApp"
         mc:Ignorable="d"
         Title="ToDo App" Height="600" Width="800"
-        Background="Black" Loaded="Window_Loaded">
+        Background="Black" Loaded="Window_Loaded"
+        Icon="D:\Programming\ToDoApp\ToDoApp\KOLP.ico">
     <Grid>
         <DataGrid x:Name="ToDo_List" FontSize="16" FontStyle="Italic" RowBackground="Green" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Path = CreationDate}" IsReadOnly="True" Header="Дата создания " Width="200"></DataGridTextColumn>
-                <DataGridCheckBoxColumn Binding="{Binding Path = Done}" IsReadOnly="False" Header="Сделано" Width="80"></DataGridCheckBoxColumn>
-                <DataGridTextColumn Binding="{Binding Path = myBusines}" IsReadOnly="False" Header="Задача" Width="*"></DataGridTextColumn>
+                <DataGridCheckBoxColumn Binding="{Binding Path = Done, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False" Header="Сделано" Width="80"></DataGridCheckBoxColumn>
+                <DataGridTextColumn Binding="{Binding Path = myBusines}" IsReadOnly="False" Header="Задача" Width="200"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Path = _ReadyDate}" IsReadOnly="True" Header="Последнее изменение" Width="*"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
